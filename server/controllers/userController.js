@@ -12,7 +12,7 @@ const jwt = require("jsonwebtoken");
 exports.signUserUp = async (req, res) =>
 {
     text =
-        "insert INTO users(first_name, last_name, email, mobile_number, country, college, year, password, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, first_name, last_name, email, mobile_number, college, year, country, created_at, updated_at";
+        "insert INTO users(first_name, last_name, email, mobile_number,country,state,city, year, password, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id, first_name, last_name, email, mobile_number, college, year, country, created_at, updated_at";
     const timestamp = new Date();
     const encryptedPassword = await bcrypt.hash(req.body.password, 10);
     values = [
@@ -70,39 +70,4 @@ exports.logUserOut = async (req, res) => {
       return res.status(500).json({ error: "Internal Server Error" });
     }
 };
-  
-
-exports.forgetPassword = async (req, res) => {
-    try {
-      const { email, otp, password } = req.body;
-      let result = await client.query("SELECT * from users where email = $1", [
-        email,
-      ]);
-      if (result.rowCount <= 0) {
-        return res.status(404).send({
-          error: "User Not Found",
-        });
-      }
-      const user = result.rows[0];
-      const decode = jwt.verify(user.otp, process.env.TOKEN_SECRET);
-      if (decode.otp !== otp) {
-        return res.status(400).send({
-          error: "Invalid Otp",
-        });
-      }
-      const hashedPassword = await bcrypt.hash(password, 10);
-      result = await client.query(
-        `update users set password = $1, otp = $2 where email = $3`,
-        [hashedPassword, null, email]
-      );
-      res.send({
-        msg: "Password Changed",
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(500).send({
-        error: "Internal Server Error",
-      });
-    }
-  };
   

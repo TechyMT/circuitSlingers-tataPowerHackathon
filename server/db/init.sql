@@ -11,7 +11,6 @@ CREATE TABLE users (
 	country VARCHAR(255) NOT NULL,
     state VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
-	otp VARCHAR(1000),
 	password VARCHAR(255) NOT NULL,
 	created_at TIMESTAMP NOT NULL,
 	updated_at TIMESTAMP NOT NULL
