@@ -11,7 +11,7 @@ const DashNav = () => {
           <Image src={image} alt="storyset" width={100} height={60} />
         </div>
         <div className="flex flex-col p-8 rounded-sm">
-          <div className="h1 text-white">Hello, Ben Murray</div>
+          <div className="text-3xl text-white">Hello, Ben Murray</div>
           <div className="p text-white">
             Hope this insights will help you to make better decisions
           </div>
