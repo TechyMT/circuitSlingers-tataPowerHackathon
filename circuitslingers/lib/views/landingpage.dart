@@ -1,3 +1,4 @@
+import 'package:circuitslingers/views/Register.dart';
 import 'package:circuitslingers/views/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,9 @@ class LandingPage extends StatelessWidget {
                 ),
               ),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => Register());
+                },
                 child: const Text(
                   "Sign Up",
                   style: TextStyle(fontSize: 16),

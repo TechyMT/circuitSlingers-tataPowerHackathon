@@ -1,225 +1,80 @@
-import 'package:circuitslingers/controller/credentialcontroller.dart';
-import 'package:circuitslingers/models/textformfield.dart';
+import 'package:circuitslingers/networking.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  final CredentialController controller = Get.put(CredentialController());
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   Login({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Registration"),
+        title: const Text("Login"),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 20),
-              const Text(
-                "Registration",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: controller.firstNameController,
-                decoration: const InputDecoration(
-                  labelText: "First Name",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  "Welcome back",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  textAlign: TextAlign.center,
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your First Name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.lastNameController,
-                decoration: const InputDecoration(
-                  labelText: "Last Name",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                const SizedBox(height: 10),
+                const Text(
+                  "Log in to your account",
+                  style: TextStyle(
+                    fontSize: 14,
                   ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  textAlign: TextAlign.center,
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your Last Name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.emailController,
-                decoration: const InputDecoration(
-                  labelText: "Email",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(labelText: "Email"),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your Email-Id';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your Email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.phoneController,
-                decoration: const InputDecoration(
-                  labelText: "Phone",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: const InputDecoration(labelText: "Password"),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your Password';
+                    }
+                    return null;
+                  },
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your Phone';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              DropdownButtonFormField<String>(
-                items: countries.map((String country) {
-                  return DropdownMenuItem<String>(
-                    value: country,
-                    child: Text(country),
-                  );
-                }).toList(),
-                decoration: const InputDecoration(
-                  labelText: "Country",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      final email = _emailController.text;
+                      final password = _passwordController.text;
+                      login(email, password);
+                    }
+                  },
+                  child: const Text("Login"),
                 ),
-                validator: (value) {
-                  if (value == null) {
-                    return 'Please select a Country';
-                  } else {
-                    controller.countryController.text = value;
-                  }
-                  return null;
-                },
-                onChanged: (String? value) {},
-              ),
-              const SizedBox(height: 10),
-              DropdownButtonFormField<String>(
-                items: indianStates.map((String country) {
-                  return DropdownMenuItem<String>(
-                    value: country,
-                    child: Text(country),
-                  );
-                }).toList(),
-                decoration: const InputDecoration(
-                  labelText: "States",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                ),
-                validator: (value) {
-                  if (value == null) {
-                    return 'Please select a States';
-                  } else {
-                    controller.stateController.text = value;
-                  }
-                  return null;
-                },
-                onChanged: (String? value) {},
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.cityController,
-                decoration: const InputDecoration(
-                  labelText: "City",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your City';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: controller.passwordController,
-                decoration: const InputDecoration(
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter yor Password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    
-                  }
-                },
-                child: const Text("Register"),
-              ),
-            ],
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
       ),
