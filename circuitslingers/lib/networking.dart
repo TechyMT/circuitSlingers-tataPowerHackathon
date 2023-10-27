@@ -1,28 +1,28 @@
+import 'package:circuitslingers/models/Article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<void> submitDataToApi(
-  String firstName,
-  String lastName,
-  String city,
-  String password,
-  String email,
-  String state,
-  String phone,
-  String country
-) async {
+    String firstName,
+    String lastName,
+    String city,
+    String password,
+    String email,
+    String state,
+    String phone,
+    String country) async {
   final Map<String, dynamic> payload = {
     "firstName": firstName,
     "lastName": lastName,
     "city": city,
     "password": password,
-    "email":email,
-    "state":state,
-    "phone":phone,
-    "country":country,
+    "email": email,
+    "state": state,
+    "phone": phone,
+    "country": country,
   };
 
-  final String apiUrl = "YOUR_API_ENDPOINT_URL_HERE";
+  const String apiUrl = "YOUR_API_ENDPOINT_URL_HERE";
 
   try {
     final response = await http.post(
@@ -42,26 +42,70 @@ Future<void> submitDataToApi(
 }
 
 Future<void> login(String email, String password) async {
-    final Map<String, dynamic> credentials = {
-      "email": email,
-      "password": password,
-    };
+  final Map<String, dynamic> credentials = {
+    "email": email,
+    "password": password,
+  };
 
-    final String apiUrl = "YOUR_LOGIN_API_ENDPOINT_URL_HERE";
+  const String apiUrl = "YOUR_LOGIN_API_ENDPOINT_URL_HERE";
 
-    try {
-      final response = await http.post(
-        Uri.parse(apiUrl),
-        headers: {"Content-Type": "application/json"},
-        body: json.encode(credentials),
-      );
+  try {
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(credentials),
+    );
 
-      if (response.statusCode == 200) {
-        print("Login successful!");
-      } else {
-        print("Login failed. Status code: ${response.statusCode}");
-      }
-    } catch (e) {
-      print("An error occurred: $e");
+    if (response.statusCode == 200) {
+      print("Login successful!");
+    } else {
+      print("Login failed. Status code: ${response.statusCode}");
     }
+  } catch (e) {
+    print("An error occurred: $e");
   }
+}
+
+Future<List<Article>> fetchSolarEnergyNews() async {
+  const apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
+  const query =
+      'solar energy OR renewable energy OR clean energy OR sustainability'
+      ' OR energy efficiency OR eco-friendly OR green energy OR solar power OR'
+      ' solar panels OR photovoltaic OR solar installation OR energy consumption'
+      ' OR energy education OR environmental awareness';
+  final response = await http.get(
+    Uri.parse('https://newsapi.org/v2/everything?q=$query&apiKey=$apiKey'),
+  );
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = json.decode(response.body);
+    final List<dynamic> articles = data['articles'];
+    return articles.map((article) => Article.fromJson(article)).toList();
+  } else {
+    throw Exception('Failed to load news');
+  }
+}
+
+Future<List<Article>> fetchNewsArticles() async {
+  final country = 'in';
+  final apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
+  final query =
+      'solar energy OR renewable energy OR energy consumption OR sustainability';
+
+  final url = Uri.parse(
+      'https://newsapi.org/v2/top-headlines?country=$country&apiKey=$apiKey');
+  final response = await http.get(url);
+
+  if (response.statusCode == 200) {
+    print("Hi");
+    final Map<String, dynamic> data = json.decode(response.body);
+    print(data);
+    final List<dynamic> articlesData = data['articles'];
+    final articles =
+        articlesData.map((article) => Article.fromJson(article)).toList();
+    return articles;
+  } else {
+    print("Hui");
+    throw Exception('Failed to load news articles');
+  }
+}
