@@ -1,4 +1,6 @@
-CREATE DATABASE hackathon
+CREATE DATABASE hackathon;
+
+\c hackathon;
 
 CREATE TABLE users (
 	id INT GENERATED ALWAYS AS IDENTITY UNIQUE,
@@ -70,18 +72,20 @@ CREATE TABLE user_weather(
     date DATE NOT NULL,
     temperature INT NOT NULL,
     humidity INT NOT NULL,
-    created_at TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP NOT NULL,
-    fk_user INT,
-    CONSTRAINT fk_user FOREIGN KEY(fk_user) REFERENCES users(id) ON DELETE CASCADE
-)
-
-CREATE TABLE sunlight(
-    id INT GENERATED ALWAYS AS IDENTITY UNIQUE,
-    date DATE NOT NULL,
-    sunlight INT NOT NULL,
+    windspeed INT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     fk_user INT,
     CONSTRAINT fk_user FOREIGN KEY(fk_user) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE user_location(
+    id INT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    latitude INT NOT NULL,
+    longitude INT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    fk_user INT,
+    CONSTRAINT fk_user FOREIGN KEY(fk_user) REFERENCES users(id) ON DELETE CASCADE
+);
+

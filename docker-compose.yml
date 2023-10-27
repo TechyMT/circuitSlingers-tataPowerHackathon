@@ -28,6 +28,15 @@ services:
       - ./server/.env.dev
     volumes: 
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - ./server/.env.dev
+    ports:
+      - "5050:80"
+    
 
 volumes:
   run_vol:

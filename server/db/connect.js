@@ -7,7 +7,7 @@ const configDev = {
   port: process.env.POSTGRES_PORT,
   // connectionTimeoutMillis: 2000,
   password: process.env.POSTGRES_PASSWORD,
-  database: "ems",
+  database: "hackathon",
 };
 
 const client = new Client(configDev);
