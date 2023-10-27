@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const SidebarItem = (props) => {
     return (
         <>
@@ -19,6 +20,7 @@ const SidebarItem = (props) => {
                             d="M5 1214 4L19 7">
                         </path>
                     </svg>
+
                         {props.item}
                 </a>
             </li>
