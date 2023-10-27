@@ -2,9 +2,7 @@ import React from "react";
 
 const InputComponent = () => {
   return (
-    <div className="flex justify-center p-80 flex-col gap-20">
-      <div className="h1 text-4xl flex justify-center">Hello</div>
-
+    <div className="flex justify-center flex-col gap-20">
       <div className="justify-center flex">
         <input
           type="text"
