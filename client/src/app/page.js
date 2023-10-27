@@ -6,7 +6,7 @@ import NavbarComponent from './components/NavbarComponent'
 
 export default function Home() {
   return (
-    <div className='w-full mx-auto'>
+    <div className="container mx-auto">
       <NavbarComponent/>
       <InputComponent />
       <Footer/>
