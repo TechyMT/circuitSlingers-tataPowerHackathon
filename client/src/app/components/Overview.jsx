@@ -9,7 +9,7 @@ const Overview = () => {
             <div>
                 <Sidebar/>
             </div>
-            <div className="p-10 text-4xl">
+            <div className="p-10">
                 <h1>Overview</h1>
                 <FourCards w={ 20 } />
             </div>
