@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2';
 
 const BarChart = () => {
   const data = {
-    labels: ['Date'],
+    labels: ['value1','value2','value3','value4','value5','value6'],
     datasets: [
       {
         label: 'Solar Consumption',
