@@ -1,6 +1,7 @@
 import 'package:circuitslingers/models/WeatherData.dart';
 import 'package:circuitslingers/models/WeatherDetailCard.dart';
 import 'package:circuitslingers/networking.dart';
+import 'package:circuitslingers/views/chat.dart';
 import 'package:circuitslingers/views/newsPage.dart';
 import 'package:circuitslingers/views/solarDataPanel.dart';
 import 'package:flutter/material.dart';
@@ -118,6 +119,12 @@ class WeatherScreen extends StatelessWidget {
             ),
             Column(
               children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => ChatPage(), transition: Transition.downToUp);
+                  },
+                  child: Text("Chat With Our Bot"),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     Get.to(() => SolarPanelScreen(),

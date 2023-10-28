@@ -89,13 +89,13 @@ Future<List<Article>> fetchSolarEnergyNews() async {
 }
 
 Future<List<Article>> fetchNewsArticles() async {
-  const country = 'in';
-  const apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
-  const query =
-      'solar energy OR renewable energy OR energy consumption OR sustainability';
+  // const country = 'in';
+  // const apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
+  // const query =
+  'solar energy OR renewable energy OR energy consumption OR sustainability';
 
   final url = Uri.parse(
-      'https://newsapi.org/v2/top-headlines?country=$country&apiKey=$apiKey');
+      'https://newsapi.org/v2/top-headlines?country=in&apiKey=0bc05e4fd0574e81aa4de8e8e1388d1d');
   final response = await http.get(url);
 
   if (response.statusCode == 200) {

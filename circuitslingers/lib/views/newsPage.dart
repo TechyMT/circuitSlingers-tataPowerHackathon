@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:circuitslingers/models/Article.dart';
 import 'package:circuitslingers/models/CustomListTile.dart';
 import 'package:circuitslingers/networking.dart';
@@ -21,7 +23,7 @@ class NewsPage extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             NewsTab(),
             NewsTab1(),
@@ -33,7 +35,7 @@ class NewsPage extends StatelessWidget {
 }
 
 class NewsTab extends StatefulWidget {
-  NewsTab({super.key});
+  const NewsTab({super.key});
 
   @override
   _NewsTabState createState() => _NewsTabState();
@@ -41,17 +43,12 @@ class NewsTab extends StatefulWidget {
 
 class _NewsTabState extends State<NewsTab> {
   late Future<List<Article>> newsFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    newsFuture = fetchNewsArticles();
-  }
+  late Future<List<Article>> news;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Article>>(
-      future: newsFuture,
+      future: fetchNewsArticles(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -84,7 +81,7 @@ class _NewsTabState extends State<NewsTab> {
 }
 
 class NewsTab1 extends StatefulWidget {
-  NewsTab1({super.key});
+  const NewsTab1({super.key});
 
   @override
   _NewsTab1State createState() => _NewsTab1State();
@@ -94,15 +91,9 @@ class _NewsTab1State extends State<NewsTab1> {
   late Future<List<Article>> newsFuture;
 
   @override
-  void initState() {
-    super.initState();
-    newsFuture = fetchSolarEnergyNews();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Article>>(
-      future: newsFuture,
+      future: fetchSolarEnergyNews(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -123,8 +114,8 @@ class _NewsTab1State extends State<NewsTab1> {
                       description: article.description,
                     ),
                     const Divider(
-                      color: Colors.black, // Divider color
-                      thickness: 1.0, // Divider thickness
+                      color: Colors.black,
+                      thickness: 1.0,
                     ),
                   ],
                 );
