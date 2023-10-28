@@ -25,8 +25,15 @@ class _SolarPanelScreenState extends State<SolarPanelScreen> {
       final DateTime time = now.subtract(Duration(minutes: count - i));
       final double powerOutput = 3.5 + (i / 10);
       final double energyGenerated = 30 + (i * 0.5);
+      double totalSavings = 0; // Initialize total savings
 
-      data.add(SolarData(time, powerOutput, energyGenerated));
+      final double unitPrice = 0.12;
+
+      final double savings = (energyGenerated * powerOutput) * unitPrice;
+
+      totalSavings += savings;
+
+      data.add(SolarData(time, powerOutput, energyGenerated, totalSavings));
     }
 
     return data;
@@ -37,6 +44,7 @@ class _SolarPanelScreenState extends State<SolarPanelScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Solar Panel Data'),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -74,6 +82,18 @@ class _SolarPanelScreenState extends State<SolarPanelScreen> {
                 yValueMapper: (SolarData sales, _) => sales.energyGenerated,
                 name: 'Energy Generated (kWh)',
                 color: Colors.blue,
+              ),
+            ],
+          ),
+          SfCartesianChart(
+            primaryXAxis: DateTimeAxis(),
+            series: <StackedAreaSeries<SolarData, DateTime>>[
+              StackedAreaSeries<SolarData, DateTime>(
+                dataSource: data,
+                xValueMapper: (SolarData sales, _) => sales.time,
+                yValueMapper: (SolarData sales, _) => sales.savings,
+                color: Colors.green,
+                name: 'Savings',
               ),
             ],
           ),

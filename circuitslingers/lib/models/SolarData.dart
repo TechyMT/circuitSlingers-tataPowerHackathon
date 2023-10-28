@@ -5,6 +5,6 @@ class SolarData {
   final DateTime time;
   final double powerOutput;
   final double energyGenerated;
-
-  SolarData(this.time, this.powerOutput, this.energyGenerated);
+  final double savings;
+  SolarData(this.time, this.powerOutput, this.energyGenerated, this.savings);
 }
