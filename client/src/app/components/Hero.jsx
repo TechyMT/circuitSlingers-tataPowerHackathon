@@ -8,17 +8,21 @@ const Hero = () => {
       <Image
         src={cover}
         alt="cover"
-        className="min-h-fit min-w-full absolute top-12 -z-10 opacity-70"
+        className="min-w-full absolute top-22 -z-10 max-h-full"
       />
 
-      <div className="justify-center p-60">
-        <div className="h1 flex mx-auto justify-center text-4xl text-bold pb-10 text-white">
-          Lighting Up the World,
+      <div className="justify-center p-60 ">
+        <div className="bg-white flex pt-8 pb-8 flex-col opacity-90 rounded-md">
+          <div className="h1 flex mx-auto justify-start text-7xl text-bold pb-10 text-purple-900">
+            Lighting Up the World!
+          </div>
+          <div className="h1  flex justify-center text-3xl text-bold pb-10">
+            One Panel at a Time.
+          </div>
+          <div>
+            <InputComponent />
+          </div>
         </div>
-        <div className="h1 mx-auto flex justify-center text-3xl text-bold pb-10">
-          One Panel at a Time.
-        </div>
-        <InputComponent />
       </div>
       <div className="">{/* <Image src={ waves } alt = "wavey"/> */}</div>
     </div>
