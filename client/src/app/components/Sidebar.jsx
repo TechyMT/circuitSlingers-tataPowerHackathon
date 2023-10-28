@@ -36,9 +36,7 @@ const Sidebar = () => {
           <SidebarItem link="/overview" item="Overview">
             {/* <FontAwesomeIcon icon={faTachometerAlt} /> */}
           </SidebarItem>
-          <SidebarItem link="/analysis" item="Analysis" />
-          <SidebarItem link="/perform" item="Performance" />
-          <SidebarItem link="/system" item="System" />
+
           <SidebarItem link="/logout" item="Logout" />
         </ul>
       </div>

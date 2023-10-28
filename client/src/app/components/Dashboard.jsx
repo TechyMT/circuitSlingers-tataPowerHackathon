@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="flex p-8 gap-8 justify-evenly">
         <Card name="Total Savings" value="$ 1,000" icon={faPiggyBank} />
         <Card name="Performance" value="100%" icon={faStar} />
-        <Card name="Annual Potential" value="$ 1,000" />
+        <Card name="Annual Potential" value="$ 1,000" icon={} />
         <Card name="Annual Loss" value="$ 1,000" />
       </div>
       <div className="grid grid-col-2">

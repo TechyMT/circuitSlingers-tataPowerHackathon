@@ -19,9 +19,9 @@ const Hero = () => {
           <div className="h1  flex justify-center text-3xl text-bold pb-10">
             One Panel at a Time.
           </div>
-          <div>
+          {/* <div>
             <InputComponent />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="">{/* <Image src={ waves } alt = "wavey"/> */}</div>
