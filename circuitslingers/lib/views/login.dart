@@ -1,4 +1,3 @@
-import 'package:circuitslingers/networking.dart';
 import 'package:circuitslingers/views/Weather.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,7 +54,7 @@ class Login extends StatelessWidget {
                       decoration: const InputDecoration(
                           labelText: "Email",
                           labelStyle: TextStyle(color: Colors.white)),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please enter your Email-Id';
@@ -69,7 +68,7 @@ class Login extends StatelessWidget {
                         labelText: "Password",
                         labelStyle: TextStyle(color: Colors.white),
                       ),
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -85,7 +84,7 @@ class Login extends StatelessWidget {
                           final email = _emailController.text;
                           final password = _passwordController.text;
                           //       login(email, password);
-                          Get.offAll(() => WeatherScreen());
+                          Get.offAll(() => const WeatherScreen());
                         }
                       },
                       child: const Text("Login"),

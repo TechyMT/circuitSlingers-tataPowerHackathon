@@ -30,14 +30,14 @@ final List<String> indianStates = [
 ];
 
 final List<String> countries = [
-  "Country 1",
-  "Country 2",
-  "Country 3",
-  "Country 4",
-  "Country 5",
-  "Country 6",
-  "Country 7",
-  "Country 8",
-  "Country 9",
-  "Country 10",
+  "India",
+  "America",
+  "Russia",
+  "Indonesia",
+  "Saudi Arabia",
+  "Qatar",
+  "United States of America",
+  "Mexico",
+  "England",
+  "Netherlands",
 ];
