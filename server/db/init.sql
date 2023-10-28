@@ -72,6 +72,8 @@ CREATE TABLE user_weather(
     temperature INT NOT NULL,
     humidity INT NOT NULL,
     windspeed INT NOT NULL,
+    
+
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     fk_user INT,

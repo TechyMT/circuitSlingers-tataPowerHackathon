@@ -8,7 +8,8 @@ const cors = require("cors");
 const client = require("./db/connect");
 
 let indexRouter = require("./routes/index");
-const weatherRouter = require("./routes/weather");
+const weatherRouter = require("./routes/predictionRoutes");
+const weatherApiRouter = require("./utils/getWeather");
 
 let app = express();
 client
@@ -24,5 +25,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/weather")
+// app.use("/weather");
+app.use("/api/weather", weatherApiRouter);
 module.exports = app;
