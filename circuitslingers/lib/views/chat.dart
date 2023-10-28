@@ -18,7 +18,7 @@ class _ChatPageState extends State<ChatPage> {
         isLoading = true;
       });
 
-      final url = 'http://e169-35-222-231-104.ngrok-free.app/get/$query';
+      final url = 'http://dbb1-35-222-231-104.ngrok-free.app/get/$query';
 
       final response = await http.get(Uri.parse(url));
 
