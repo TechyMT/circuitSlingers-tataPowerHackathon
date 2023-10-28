@@ -72,8 +72,24 @@ CREATE TABLE user_weather(
     temperature INT NOT NULL,
     humidity INT NOT NULL,
     windspeed INT NOT NULL,
-    
-
+    temperature_2_m_above_gnd FLOAT NOT NULL,
+    relative_humidity_2_m_above_gnd FLOAT NOT NULL,
+    wind_speed_10_m_above_gnd FLOAT NOT NULL,
+    wind_speed_80_m_above_gnd FLOAT NOT NULL,
+    wind_direction_10_m_above_gnd FLOAT NOT NULL,
+    wind_direction_80_m_above_gnd FLOAT NOT NULL,
+    wind_speed_900_mb FLOAT NOT NULL,
+    wind_gust_10_m_above_gnd FLOAT NOT NULL,
+    angle_of_incidence FLOAT NOT NULL,
+    zenith FLOAT NOT NULL,
+    azimuth FLOAT NOT NULL,
+    mean_sea_level_pressure_MSL FLOAT NOT NULL,
+    total_precipitation_sfc FLOAT NOT NULL,
+    snowfall_amount_sfc FLOAT NOT NULL,
+    total_cloud_cover_sfc FLOAT NOT NULL,
+    high_cloud_cover_high_cld_lay FLOAT NOT NULL,
+    medium_cloud_cover_mid_cld_lay FLOAT NOT NULL,
+    shortwave_radiation_backwards_sfc FLOAT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     fk_user INT,
@@ -90,3 +106,10 @@ CREATE TABLE user_location(
     CONSTRAINT fk_user FOREIGN KEY(fk_user) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE llama_query(
+    id INT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    query VARCHAR(255) NOT NULL,
+    response VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+);

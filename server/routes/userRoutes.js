@@ -17,10 +17,6 @@ userRouter.post("/signin", signUserIn);
 
 userRouter.post("/signout", isAuthenticated, logUserOut);
 
-userRouter.post('/otp', sendOtp);
-
-userRouter.post('/forget', forgetPassword);
-
 userRouter.get("/me", isAuthenticated, getLoggedInUser);
 
 module.exports = userRouter;
