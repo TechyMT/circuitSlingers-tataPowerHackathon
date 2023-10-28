@@ -1,9 +1,13 @@
 import 'package:circuitslingers/models/WeatherData.dart';
 import 'package:circuitslingers/models/WeatherDetailCard.dart';
 import 'package:circuitslingers/networking.dart';
+import 'package:circuitslingers/views/newsPage.dart';
+import 'package:circuitslingers/views/solarDataPanel.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:weather/weather.dart';
 import 'package:intl/intl.dart';
+import 'package:analog_clock/analog_clock.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({Key? key});
@@ -22,8 +26,8 @@ class WeatherScreen extends StatelessWidget {
         ),
         Column(
           children: [
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               "Weather Today ",
               style: TextStyle(fontSize: 25, color: Colors.white),
             ),
@@ -31,7 +35,7 @@ class WeatherScreen extends StatelessWidget {
               future: fetchWeather(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
@@ -44,37 +48,58 @@ class WeatherScreen extends StatelessWidget {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         '$formattedDateTime',
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+                        style:
+                            const TextStyle(fontSize: 25, color: Colors.white),
                       ),
-                      SizedBox(height: 30),
+                      // AnalogClock(
+                      //   decoration: BoxDecoration(
+                      //       border: Border.all(width: 2.0, color: Colors.black),
+                      //       color: Colors.transparent,
+                      //       shape: BoxShape.circle),
+                      //   width: 150.0,
+                      //   isLive: true,
+                      //   hourHandColor: Colors.black,
+                      //   minuteHandColor: Colors.black,
+                      //   showSecondHand: false,
+                      //   numberColor: Colors.black87,
+                      //   showNumbers: true,
+                      //   showAllNumbers: false,
+                      //   textScaleFactor: 1.4,
+                      //   showTicks: false,
+                      //   showDigitalClock: false,
+                      //   datetime: DateTime(2019, 1, 1, 9, 12, 15),
+                      // ),
+                      const SizedBox(height: 30),
                       Text(
                         'City: ${weather.cityName}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Temperature: ${weather.temperature}°C',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Weather: ${weather.description}',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white),
                       ),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           WeatherDetailCard(
                             title: 'Feels Like',
                             value: '${weather.feelslike}°C',
-                            icon: Icons.thermostat, // Icon for temperature
+                            icon: Icons.thermostat,
                           ),
                           WeatherDetailCard(
                             title: 'Wind',
@@ -88,6 +113,26 @@ class WeatherScreen extends StatelessWidget {
                 }
               },
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.30,
+            ),
+            Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => SolarPanelScreen(),
+                        transition: Transition.downToUp);
+                  },
+                  child: Text("Solar Data Overview"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => NewsPage(), transition: Transition.downToUp);
+                  },
+                  child: Text("News from World"),
+                ),
+              ],
+            )
           ],
         ),
       ]),

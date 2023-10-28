@@ -99,15 +99,15 @@ Future<List<Article>> fetchNewsArticles() async {
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
-
     final Map<String, dynamic> data = json.decode(response.body);
 
     final List<dynamic> articlesData = data['articles'];
+    print(articlesData);
     final articles =
         articlesData.map((article) => Article.fromJson(article)).toList();
+
     return articles;
   } else {
-
     throw Exception('Failed to load news articles');
   }
 }

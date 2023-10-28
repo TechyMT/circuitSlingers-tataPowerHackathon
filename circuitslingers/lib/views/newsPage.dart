@@ -59,12 +59,11 @@ class _NewsTabState extends State<NewsTab> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           final articles = snapshot.data;
-  
+
           return ListView.builder(
               itemCount: articles!.length,
               itemBuilder: (context, index) {
                 final article = articles[index];
-
                 return Column(
                   children: <Widget>[
                     CustomListTile(
@@ -72,8 +71,8 @@ class _NewsTabState extends State<NewsTab> {
                       description: article.description,
                     ),
                     const Divider(
-                      color: Colors.black, // Divider color
-                      thickness: 1.0, // Divider thickness
+                      color: Colors.black,
+                      thickness: 1.0,
                     ),
                   ],
                 );
@@ -111,7 +110,7 @@ class _NewsTab1State extends State<NewsTab1> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           final articles = snapshot.data;
-       
+
           return ListView.builder(
               itemCount: articles!.length,
               itemBuilder: (context, index) {
