@@ -1,10 +1,13 @@
 from flask import Flask, request , jsonify
 import pickle
 import numpy as np
+from flask_cors import CORS
 
-app = Flask(_name_)
+app = Flask(__name__)
+CORS(app)
 
-model = pickle.load('model.pkl','rb')
+with open('Static/model2.pkl', 'rb') as file:
+    model = pickle.load(file)
 
 sample_data = {
     "temperature_2_m_above_gnd": 7.43,
@@ -29,23 +32,32 @@ sample_data = {
     "azimuth": 168.3542
 }
 
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def predict():
-    data = request.get_json()
+    if request.method == 'POST':
 
-    # Ensure that all the required features are present in the received data
-    required_features = list(sample_data.keys())
-    for feature in required_features:
-        if feature not in data:
-            return jsonify({"error": f"Missing feature: {feature}"})
+        data = request.get_json()
+        print(data)
+
+        # Ensure that all the required features are present in the received data
+        required_features = list(sample_data.keys())
+        for feature in required_features:
+            if feature not in data:
+                return jsonify({"error": f"Missing feature: {feature}"})
+        
+        # Convert the data to a format suitable for the model
+        input_data = [data[feature] for feature in required_features]
+        print(input_data)
+        input_data = np.array(input_data).reshape(1, -1)
+
+        # Use the Random Forest model to make a prediction
+        prediction = model.predict(input_data)
+        print(prediction)
+
+        return jsonify({"prediction": prediction[0]})
     
-    # Convert the data to a format suitable for the model
-    input_data = [data[feature] for feature in required_features]
-    print(input_data)
-    input_data = np.array(input_data).reshape(1, -1)
 
-    # Use the Random Forest model to make a prediction
-    prediction = model.predict(input_data)
-    print(prediction)
 
-    return jsonify({"prediction": prediction[0]})
+
+# if _name_ == '_main_':
+#     app.run()

@@ -29,14 +29,15 @@ services:
     volumes: 
       - ./server/db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
   
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    env_file:
-      - ./server/.env.dev
+  evaluation: 
+    container_name: mlmodel
+    image: mlmodel
+    build:
+      context: ./ml-models
     ports:
-      - "5050:80"
-    
+      - "5000:5000"
+    command: >
+      sh -c "python3 -m venv venv && gunicorn --bind 0.0.0.0:5000 wsgi:app" 
 
 volumes:
   run_vol:
