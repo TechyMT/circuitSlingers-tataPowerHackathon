@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('model2.pkl', 'rb'))
 
 sample_data = {
     "temperature_2_m_above_gnd": 7.43,
