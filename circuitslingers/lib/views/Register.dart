@@ -1,5 +1,6 @@
 import 'package:circuitslingers/controller/credentialcontroller.dart';
 import 'package:circuitslingers/models/textformfield.dart';
+import 'package:circuitslingers/views/Weather.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,6 +44,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "First Name",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter your First Name';
@@ -58,6 +60,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "Last Name",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter your Last Name';
@@ -73,6 +76,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "Email",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter your Email';
@@ -88,6 +92,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "Phone",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter your Phone';
@@ -108,6 +113,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "Country",
                     ),
+                    style: TextStyle(color: Colors.black),
                     validator: (value) {
                       if (value == null) {
                         return 'Please select a Country';
@@ -129,6 +135,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "States",
                     ),
+                    style: TextStyle(color: Colors.black),
                     validator: (value) {
                       if (value == null) {
                         return 'Please select a States';
@@ -147,6 +154,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "City",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter your City';
@@ -162,6 +170,7 @@ class Register extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: "Password",
                     ),
+                    style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter yor Password';
@@ -172,7 +181,9 @@ class Register extends StatelessWidget {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        Get.offAll(() => WeatherScreen());
+                      }
                     },
                     child: const Text("Register"),
                   ),

@@ -18,7 +18,7 @@ class NewsPage extends StatelessWidget {
           title: const Text("What's buzzing around?"),
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'India News'),
+              Tab(text: 'Technology News'),
               Tab(text: 'World News'),
             ],
           ),
@@ -54,26 +54,29 @@ class _NewsTabState extends State<NewsTab> {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
-        } else {
-          final articles = snapshot.data;
+        } else if (snapshot.hasData) {
+          final articles = snapshot.data!;
 
           return ListView.builder(
-              itemCount: articles!.length,
-              itemBuilder: (context, index) {
-                final article = articles[index];
-                return Column(
-                  children: <Widget>[
-                    CustomListTile(
-                      title: article.title,
-                      description: article.description,
-                    ),
-                    const Divider(
-                      color: Colors.black,
-                      thickness: 1.0,
-                    ),
-                  ],
-                );
-              });
+            itemCount: articles.length,
+            itemBuilder: (context, index) {
+              final article = articles[index];
+              return Column(
+                children: <Widget>[
+                  CustomListTile(
+                    title: article.title ?? 'No Title',
+                    description: article.description ?? 'No Description',
+                  ),
+                  const Divider(
+                    color: Colors.black,
+                    thickness: 1.0,
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          return const Center(child: Text('No data available.'));
         }
       },
     );

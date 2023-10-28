@@ -11,8 +11,8 @@ class SplashPage extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: 'assets/landing.gif',
       nextScreen: const LandingPage(),
-      splashTransition: SplashTransition.rotationTransition,
-      backgroundColor: Colors.green,
+      splashTransition: SplashTransition.fadeTransition,
+      backgroundColor: Colors.white,
     );
   }
 }

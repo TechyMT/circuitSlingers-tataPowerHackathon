@@ -18,7 +18,7 @@ class _ChatPageState extends State<ChatPage> {
         isLoading = true;
       });
 
-      final url = 'http://dbb1-35-222-231-104.ngrok-free.app/get/$query';
+      final url = 'http://a61b-35-222-231-104.ngrok-free.app/get/$query';
 
       final response = await http.get(Uri.parse(url));
 
@@ -71,7 +71,7 @@ class _ChatPageState extends State<ChatPage> {
               else if (response.isNotEmpty)
                 Text(
                   response,
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 16.0, color: Colors.black),
                 ),
             ],
           ),

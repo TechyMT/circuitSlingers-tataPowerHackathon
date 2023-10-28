@@ -95,7 +95,7 @@ Future<List<Article>> fetchNewsArticles() async {
   'solar energy OR renewable energy OR energy consumption OR sustainability';
 
   final url = Uri.parse(
-      'https://newsapi.org/v2/top-headlines?country=in&apiKey=0bc05e4fd0574e81aa4de8e8e1388d1d');
+      'https://newsapi.org/v2/everything?q=apple&from=2023-10-27&to=2023-10-27&sortBy=popularity&apiKey=0bc05e4fd0574e81aa4de8e8e1388d1d');
   final response = await http.get(url);
 
   if (response.statusCode == 200) {

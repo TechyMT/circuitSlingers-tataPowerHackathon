@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: const TextTheme(
             bodyMedium: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
-          primaryColor: Colors.blue,
+          primaryColor: Colors.white,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: WeatherScreen());
+        home: SplashPage());
   }
 }
