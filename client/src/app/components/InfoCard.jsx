@@ -19,7 +19,7 @@ const InfoCards = (props) => {
           </div>
             </div>
             <div className="p-4">
-                <SunButton/>
+          <SunButton link={props.link} />
             </div>
        
   
