@@ -2,6 +2,8 @@ import 'package:circuitslingers/models/Article.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'models/WeatherData.dart';
+
 Future<void> submitDataToApi(
     String firstName,
     String lastName,
@@ -87,9 +89,9 @@ Future<List<Article>> fetchSolarEnergyNews() async {
 }
 
 Future<List<Article>> fetchNewsArticles() async {
-  final country = 'in';
-  final apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
-  final query =
+  const country = 'in';
+  const apiKey = '0bc05e4fd0574e81aa4de8e8e1388d1d';
+  const query =
       'solar energy OR renewable energy OR energy consumption OR sustainability';
 
   final url = Uri.parse(
@@ -97,15 +99,30 @@ Future<List<Article>> fetchNewsArticles() async {
   final response = await http.get(url);
 
   if (response.statusCode == 200) {
-    print("Hi");
+
     final Map<String, dynamic> data = json.decode(response.body);
-    print(data);
+
     final List<dynamic> articlesData = data['articles'];
     final articles =
         articlesData.map((article) => Article.fromJson(article)).toList();
     return articles;
   } else {
-    print("Hui");
+
     throw Exception('Failed to load news articles');
+  }
+}
+
+Future<WeatherData> fetchWeather() async {
+  const apiKey = '40a57483ec0767498677823eace974c0';
+  const city = 'Pune';
+  final apiUrl = Uri.parse(
+      'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric');
+  final response = await http.get(apiUrl);
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return WeatherData.fromJson(data);
+  } else {
+    throw Exception('Failed to load weather data');
   }
 }

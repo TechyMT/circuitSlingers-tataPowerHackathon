@@ -1,7 +1,10 @@
+import 'package:circuitslingers/views/Weather.dart';
 import 'package:circuitslingers/views/newsPage.dart';
+import 'package:circuitslingers/views/solarDataPanel.dart';
 import 'package:circuitslingers/views/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weather/weather.dart';
 
 //0bc05e4fd0574e81aa4de8e8e1388d1d
 void main() {
@@ -18,13 +21,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: TextTheme(
             bodyMedium: TextStyle(
-              color: Colors.white, // Set the default text color here
+              color: Colors.black,
             ),
           ),
           primaryColor: Colors.blue,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: NewsPage());
+        home: SolarPanelScreen());
   }
 }
