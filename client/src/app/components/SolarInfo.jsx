@@ -5,7 +5,7 @@ import SunButton from "./SunButton";
 const SolarInfo = () => {
   return (
       <div className="flex flex-col gap-18">
-          <div className="text-4xl mx-auto mt-8 text-purple-700 font-bold">
+          <div className="pt-16 text-4xl mx-auto mt-8 text-purple-700 font-bold">
               Why Solar Energy?
           </div>
       
