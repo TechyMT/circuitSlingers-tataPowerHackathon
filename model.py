@@ -24,7 +24,7 @@ mse = mean_squared_error(y_test, y_pred_rfr)
 r2 = r2_score(y_test, y_pred_rfr)
 print(y_pred_rfr)
 
-pickle.dump(rfr, open('model2.pkl','wb'))
+pickle.dump(rfr, open('model2.pkl','wb'),protocol=5)
 
 model = pickle.load(open('model2.pkl', 'rb'))
 
