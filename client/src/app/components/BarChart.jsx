@@ -3,14 +3,17 @@ import { Bar } from 'react-chartjs-2';
 
 const BarChart = () => {
   const data = {
-    labels: ['value1','value2','value3','value4','value5','value6'],
+    labels: ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'],
     datasets: [
       {
         label: 'Solar Consumption',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [1100, 1900, 360, 530, 232, 3253, 4232],
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
+        borderWidth: 2,
+
+        
+
       },
     ],
   };
@@ -19,13 +22,14 @@ const BarChart = () => {
     scales: {
       y: {
         beginAtZero: true,
+        
       },
     },
   };
 
   return (
     <div>
-      <Bar data={data} options={options} />
+      <Bar data={data} options={options} className='w-86' />
     </div>
   );
 };

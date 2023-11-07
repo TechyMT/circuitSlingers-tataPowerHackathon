@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -25,6 +25,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-charts": "^3.0.0-beta.56",
     "react-dom": "^18",
+    "react-minimal-pie-chart": "^8.4.0",
     "react-router-dom": "^6.17.0",
     "react-youtube": "^10.1.0"
   },
