@@ -9,6 +9,8 @@ const Hero = () => {
         src={cover}
         alt="cover"
         className="min-w-full absolute top-22 -z-10 max-h-full"
+        width={0}
+        height={0}
       />
 
       <div className="justify-center p-60 ">
