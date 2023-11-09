@@ -11,6 +11,8 @@ const Hero = () => {
         className="min-w-full absolute top-22 -z-10 max-h-full"
         width={0}
         height={0}
+        unoptimized={true}
+        loading="eager"
       />
 
       <div className="justify-center p-60 ">
