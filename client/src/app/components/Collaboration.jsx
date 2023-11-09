@@ -6,7 +6,7 @@ const Collaboration = () => {
   return (
     <div className="flex justify-between p-32">
       <div className="flex items-center">
-        <Image src={city1} width={1200} height={1200} />
+        <Image src={city1} width={1200} height={1200} unoptimized={true} />
       </div>
       <div className="flex flex-col ml-auto">
         <div className="text-4xl mx-auto mt-8 text-purple-700 font-bold">
