@@ -5,10 +5,17 @@ import axios from "axios";
 
 const InputComponent = () => {
   const [query, setQuery] = useState("");
+  const [hover, setHover] = useState(false);
   const handleChange = (e) => {
     console.log(query);
     setQuery(e.target.value);
   };
+
+  const handleHover = () =>
+  {
+    console.log("hover")
+    setHover(!hover);
+  }
 
   const handleClick = async (prompt) => {
     const queryWithoutSpaces = prompt.split(" ").join("");
@@ -36,15 +43,19 @@ const InputComponent = () => {
           onChange={handleChange}
         />
         <button
-          className="bg-gray-800 rounded text-white p-2"
+          className={`${hover? 'cursor-not-allowed bg-black': 'bg-black'} rounded text-white p-2`}
           onClick={async () => {
             await handleClick(query);
           }}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
+          
         >
           Ask
-        </button>
+          </button>
+          </div>
       </div>
-    </div>
+  
   );
 };
 
